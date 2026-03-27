@@ -1,0 +1,117 @@
+<section class="bg-linear-to-r from-green-600 to-green-400 text-white">
+  <div class="container mx-auto px-6 py-10">
+    <!-- Breadcrumb -->
+    <div class="text-sm mb-6 text-green-100 flex items-center gap-2">
+      <a routerLink="/home" class="cursor-pointer hover:text-white"> Home </a>
+
+      <span>/</span>
+
+      <span class="text-white font-medium"> Featured Products </span>
+    </div>
+
+    <!-- Title Row -->
+    <div class="flex items-center gap-4">
+      <!-- Icon -->
+      <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
+        <i class="fa-solid fa-box text-2xl"></i>
+      </div>
+
+      <!-- Title + Subtitle -->
+      <div>
+        <h1 class="text-3xl font-semibold">All Products</h1>
+
+        <p class="text-green-100 text-sm mt-1">Explore our complete product collection</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- featured-products section -->
+<div class="container mx-auto px-6 py-10">
+  <section>
+    <!-- Title -->
+    <div class="flex items-center gap-3 my-8">
+      <div class="h-8 w-1.5 bg-linear-to-b from-emerald-500 to-emerald-700 rounded-full"></div>
+      <h2 class="text-3xl font-bold text-gray-800">
+        All <span class="text-emerald-600">Products</span>
+      </h2>
+    </div>
+
+    <!-- Grid — items-stretch makes every cell same height -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 items-stretch"
+    >
+      @for (
+        prod of productList()
+          | paginate
+            : {
+                id: 'productsPagination',
+                itemsPerPage: pageSize(),
+                currentPage: p(),
+                totalItems: total(),
+              };
+        track prod._id
+      ) {
+        <app-product-card [data]="prod"></app-product-card>
+      }
+    </div>
+
+    <div class="flex justify-center my-4">
+        <pagination-controls class="my-pagination" id="productsPagination" (pageChange)="getAllProducts($event)">
+        </pagination-controls>
+    </div>
+
+  </section>
+</div>
+<!-- Benefits Section -->
+<section class="bg-[#F0FDF4] py-10">
+  <div class="px-6 container mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Free Shipping -->
+          <div class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition">
+              <div class="w-12 h-12 rounded-full bg-[#DCFCE7] flex items-center justify-center">
+                  <i class="fas fa-truck text-green-600"></i>
+              </div>
+              <div>
+                  <h4 class="font-semibold text-gray-800">Free Shipping</h4>
+                  <p class="text-sm text-gray-500">On orders over 500 EGP</p>
+              </div>
+          </div>
+
+          <!-- Secure Payment -->
+          <div class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition">
+              <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                  <i class="fas fa-shield-alt text-green-600"></i>
+              </div>
+              <div>
+                  <h4 class="font-semibold text-gray-800">Secure Payment</h4>
+                  <p class="text-sm text-gray-500">100% secure transactions</p>
+              </div>
+          </div>
+
+          <!-- Easy Returns -->
+          <div class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition">
+              <div class="w-12 h-12 rounded-full bg-[#DCFCE7] flex items-center justify-center">
+                  <i class="fas fa-rotate-left text-green-600"></i>
+              </div>
+              <div>
+                  <h4 class="font-semibold text-gray-800">Easy Returns</h4>
+                  <p class="text-sm text-gray-500">14-day return policy</p>
+              </div>
+          </div>
+
+          <!-- 24/7 Support -->
+          <div class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition">
+              <div class="w-12 h-12 rounded-full bg-[#DCFCE7] flex items-center justify-center">
+                  <i class="fas fa-headset text-green-600"></i>
+              </div>
+              <div>
+                  <h4 class="font-semibold text-gray-800">24/7 Support</h4>
+                  <p class="text-sm text-gray-500">Dedicated support team</p>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</section>

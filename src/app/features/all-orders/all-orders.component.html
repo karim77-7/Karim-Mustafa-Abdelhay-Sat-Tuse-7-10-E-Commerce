@@ -1,0 +1,172 @@
+<section class="container mx-auto">
+  <div>
+    <span class="flex items-center gap-1">
+      <a class="cursor-pointer text-gray-500" routerLink="/home">Home</a>
+      <span class="text-gray-400 mx-1">/</span>
+      <span>My Orders</span>
+    </span>
+  </div>
+
+  <div class="flex justify-between items-center mt-4 mb-4">
+  
+    <!-- Left: Icon + Title -->
+    <div class="flex items-center gap-3">
+      <div class="bg-[#1FB957] rounded-2xl w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center shadow-md shrink-0">
+        <i class="fa-solid fa-box text-white text-lg sm:text-2xl"></i>
+      </div>
+      <div>
+        <p class="text-base sm:text-xl font-bold text-gray-900">My Orders</p>
+        <p class="text-xs sm:text-sm text-gray-400">Track and manage your 1 order</p>
+      </div>
+    </div>
+  
+    <!-- Right: Continue Shopping -->
+    <div class="flex items-center gap-1 sm:gap-2 cursor-pointer shrink-0">
+      <i class="fa-solid fa-bag-shopping text-[#1FB957] text-sm sm:text-base"></i>
+      <span class="text-[#1FB957] font-medium text-xs sm:text-base">Continue Shopping</span>
+    </div>
+  
+  </div>
+
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-5 mb-4"
+  [class]="showDetails ? 'border-2 border-[#1FB957]/40' : 'border border-gray-100'">
+
+    <!-- Top Row -->
+    <div class="flex items-start justify-between gap-3">
+  
+      <!-- Left: Image + Info -->
+      <div class="flex items-start gap-3">
+  
+        <!-- Image with +3 badge -->
+        <div class="relative w-14 h-14 sm:w-20 sm:h-20 bg-gray-50 rounded-xl flex items-center justify-center shrink-0">
+          <img src="assets/regPhoto.png" alt="product" class="w-12 h-12 sm:w-16 sm:h-16 object-contain rounded-lg" />
+          <span class="absolute -top-2 -right-2 bg-gray-900 text-white text-xs font-bold rounded-full w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center">+3</span>
+        </div>
+  
+        <!-- Order Details -->
+        <div class="flex flex-col gap-1">
+  
+          <span class="inline-flex items-center gap-1 bg-blue-100 text-blue-600 text-xs font-medium px-2 sm:px-3 py-1 rounded-full w-fit">
+            <i class="fa-solid fa-truck text-xs"></i> On the way
+          </span>
+  
+          <p class="text-sm sm:text-base font-bold text-gray-900">
+            <span class="text-gray-400 font-normal"># </span>80984
+          </p>
+  
+          <div class="flex flex-wrap items-center gap-1 sm:gap-2 text-xs text-gray-400">
+            <i class="fa-regular fa-calendar"></i>
+            <span>Mar 22, 2026</span>
+            <span>•</span>
+            <i class="fa-solid fa-box-archive"></i>
+            <span>9 items</span>
+            <span>•</span>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>cairo</span>
+          </div>
+  
+          <p class="text-base sm:text-lg font-bold text-gray-900 mt-1">
+            5,541 <span class="text-xs font-normal text-gray-400">EGP</span>
+          </p>
+  
+        </div>
+      </div>
+  
+      <!-- Right: Card Icon + Toggle Button -->
+      <div class="flex flex-col items-end justify-between gap-6 sm:gap-10 shrink-0">
+  
+        <div class="bg-purple-100 text-purple-500 rounded-xl w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
+          <i class="fa-solid fa-credit-card text-sm sm:text-base"></i>
+        </div>
+  
+        @if (showDetails) {
+          <button (click)="toggleDetails()"
+            class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-[#1FB957] text-white transition-all">
+            Hide <i class="fa-solid fa-chevron-up"></i>
+          </button>
+        } @else {
+          <button (click)="toggleDetails()"
+            class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-white text-gray-700 border border-gray-200 transition-all">
+            Details <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        }
+  
+      </div>
+    </div>
+  
+    <!-- Expandable Details Section -->
+    @if (showDetails) {
+        <div class="mt-4 sm:mt-5 border-t border-gray-100 pt-4">
+      
+          <!-- Order Items Title -->
+          <div class="flex items-center gap-2 mb-4">
+            <div class="bg-green-100 text-green-600 rounded-md w-6 h-6 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-table-cells"></i>
+            </div>
+            <span class="font-semibold text-gray-800 text-sm sm:text-base">Order Items</span>
+          </div>
+      
+          <!-- Item Row -->
+          <div class="flex items-center justify-between py-3 border-b border-gray-50 gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gray-50 rounded-xl flex items-center justify-center shrink-0">
+                <img src="product-image.jpg" alt="item" class="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
+              </div>
+              <div>
+                <p class="text-xs sm:text-sm font-semibold text-gray-800">Woman Shawl</p>
+                <p class="text-xs text-gray-400">1 × 149 EGP</p>
+              </div>
+            </div>
+            <div class="text-right shrink-0">
+              <p class="font-bold text-gray-900 text-sm sm:text-base">149</p>
+              <p class="text-xs text-gray-400">EGP</p>
+            </div>
+          </div>
+      
+          <!-- ✅ Delivery + Summary Section -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+      
+            <!-- Delivery Address -->
+            <div class="border border-gray-100 rounded-2xl p-4">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="bg-blue-50 text-blue-500 rounded-lg w-7 h-7 flex items-center justify-center">
+                  <i class="fa-solid fa-location-dot text-sm"></i>
+                </div>
+                <span class="font-semibold text-gray-800 text-sm">Delivery Address</span>
+              </div>
+              <p class="text-sm text-gray-700 font-medium">cairo</p>
+              <p class="text-sm text-gray-500 mt-1">maadi</p>
+              <div class="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                <i class="fa-solid fa-phone text-xs"></i>
+                <span>01124314436</span>
+              </div>
+            </div>
+      
+            <!-- Order Summary -->
+            <div class="bg-blue-50 rounded-2xl p-4">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="bg-blue-500 text-white rounded-lg w-7 h-7 flex items-center justify-center">
+                  <i class="fa-solid fa-truck text-sm"></i>
+                </div>
+                <span class="font-semibold text-gray-800 text-sm">Order Summary</span>
+              </div>
+              <div class="flex justify-between text-sm text-gray-500 mb-2">
+                <span>Subtotal</span>
+                <span>5,541 EGP</span>
+              </div>
+              <div class="flex justify-between text-sm text-gray-500 mb-3">
+                <span>Shipping</span>
+                <span>Free</span>
+              </div>
+              <div class="flex justify-between text-sm font-bold text-gray-900 border-t border-blue-100 pt-3">
+                <span>Total</span>
+                <span>5,541 EGP</span>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      }
+  
+  </div>
+</section>

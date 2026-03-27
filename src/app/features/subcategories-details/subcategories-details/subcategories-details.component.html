@@ -1,0 +1,47 @@
+<div class="container mx-auto mt-16">
+  <!-- Active Filters -->
+<div class="flex items-center gap-3 mb-4 mt-11">
+  <div class="flex items-center gap-2 text-gray-500 text-sm">
+    <i class="fa-solid fa-filter"></i>
+    <span>Active Filters:</span>
+  </div>
+
+  <!-- Filter tag -->
+  <span class="flex items-center gap-2 bg-green-100 text-green-700 text-sm font-medium px-3 py-1 rounded-full">
+    <i class="fa-solid fa-folder-open text-green-600 text-xs"></i>
+    Computer Components
+    <button class="text-green-500 hover:text-green-700 transition">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </span>
+
+  <!-- Clear all -->
+  <button class="text-sm text-gray-500 underline hover:text-gray-700 transition">
+    Clear all
+  </button>
+</div>
+
+<!-- Count -->
+<p class="text-sm text-gray-500 mb-6">Showing 0 products</p>
+
+<!-- Empty State -->
+<div class="flex flex-col items-center justify-center py-24 text-center">
+
+  <!-- Icon -->
+  <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+    <i class="fa-solid fa-box-open text-gray-400 text-3xl"></i>
+  </div>
+
+  <!-- Title -->
+  <h2 class="text-xl font-bold text-gray-800 mb-2">No Products Found</h2>
+
+  <!-- Subtitle -->
+  <p class="text-gray-500 text-sm mb-8">No products match your current filters.</p>
+
+  <!-- CTA Button -->
+  <button routerLink="/shop" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-full transition">
+    View All Products
+  </button>
+
+</div>
+</div>

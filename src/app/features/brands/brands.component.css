@@ -1,0 +1,16 @@
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: green;
+    border-radius: 8px;
+    -webkit-border-radius : 8px;
+    -moz-border-radius : 8px;
+    -ms-border-radius : 8px;
+    -o-border-radius : 8px;
+
+  }
+  .my-pagination ::ng-deep .ngx-pagination a {
+    border-radius: 8px;
+    -webkit-border-radius : 8px;
+    -moz-border-radius : 8px;
+    -ms-border-radius : 8px;
+    -o-border-radius : 8px;
+  }

@@ -1,0 +1,321 @@
+<!-- register :- -->
+
+<div class="min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-7xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 p-4">
+
+        <!-- LEFT SIDE -->
+        <div class="hidden lg:flex flex-col items-center justify-center p-10">
+            <div class="w-full rounded-md shadow-lg overflow-hidden mb-4">
+                <img src="assets/regPhoto.png" class="w-full h-[384px]" alt="Shopping Cart">
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-800 text-center">
+                FreshCart - Your One-Stop Shop for Fresh Products
+            </h2>
+
+            <p class="text-gray-500 text-center mt-4 max-w-md">
+                Join thousands of happy customers who trust FreshCart for their daily grocery needs
+            </p>
+
+            <div class="flex gap-8 mt-6 text-sm text-gray-600">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-truck text-green-600"></i>
+                    <span>Free Delivery</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-green-600"></i>
+                    <span>Secure Payment</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-headset text-green-600"></i>
+                    <span>24/7 Support</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="p-10 bg-white rounded-2xl shadow-md">
+
+            <!-- Logo -->
+            <div class="text-center mb-6">
+                <h1 class="text-3xl font-bold">
+                    <span class="text-green-600">Fresh</span>Cart
+                </h1>
+                <h2 class="text-xl font-semibold mt-2 text-gray-800">Create Account</h2>
+                <p class="text-gray-500 text-sm mt-1">
+                    Register to start your fresh shopping experience
+                </p>
+            </div>
+
+            <!-- Form -->
+            <form (ngSubmit)="register()" [formGroup]="registerForm" class="space-y-5">
+
+                <!-- Name -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-3 top-3.5 text-gray-400"></i>
+                        <input type="text" placeholder="Enter your full name"
+                        formControlName="name"
+                        [class]="{
+                          'border-green-500' : registerForm.get('name')?.valid,
+                          'border-red-500' : registerForm.get('name')?.invalid && registerForm.get('name')?.touched
+                        }"
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none">
+                    </div>
+                    @if (registerForm.get('name')?.errors && registerForm.get('name')?.touched) {
+                        <div class="flex p-4 mb-4 mt-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+                            <svg class="w-4 h-4 me-2 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                            <span class="sr-only">Danger</span>
+                            <div>
+                              <span class="font-medium">Ensure that these requirements are met:</span>
+                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                                  @if (registerForm.get('name')?.getError('required')) {<li>Name is required</li>}
+                                  @if (registerForm.get('name')?.getError('minlength')) {<li>At least 3 characters</li>}
+                                  @if (registerForm.get('name')?.getError('maxlength')) {<li>Up to 20 characters</li>}
+                              </ul>
+                            </div>
+                          </div>
+                    }
+
+
+
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-envelope absolute left-3 top-3.5 text-gray-400"></i>
+                        <input type="email" placeholder="Enter your email"
+                        [class]="{
+                          'border-green-500' : registerForm.get('email')?.valid,
+                          'border-red-500' : registerForm.get('email')?.invalid && registerForm.get('email')?.touched
+                        }"
+                        formControlName="email"
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-0  focus:outline-none">
+                    </div>
+
+                    @if (registerForm.get('email')?.errors && registerForm.get('email')?.touched) {
+                        <div class="flex p-4 mb-4 mt-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+                            <svg class="w-4 h-4 me-2 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                            <span class="sr-only">Danger</span>
+                            <div>
+                              <span class="font-medium">Ensure that these requirements are met:</span>
+                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                                  @if (registerForm.get('email')?.getError('required')) {<li>email is required</li>}
+                                  @if (registerForm.get('email')?.getError('email')) {<li> Email must be in a valid format, like:name@example.com</li>}
+                                  
+                              </ul>
+                            </div>
+                          </div>
+                    }
+
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-phone absolute left-3 top-3.5 text-gray-400"></i>
+                        <input type="tel" placeholder="Enter your phone number"
+                        formControlName="phone"
+                        [class]="{
+                          'border-green-500' : registerForm.get('phone')?.valid,
+                          'border-red-500' : registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched
+                        }"
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-0  focus:outline-none">
+                    </div>
+                    @if (registerForm.get('phone')?.errors && registerForm.get('phone')?.touched) {
+                        <div class="flex p-4 mb-4 mt-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+                            <svg class="w-4 h-4 me-2 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                            <span class="sr-only">Danger</span>
+                            <div>
+                              <span class="font-medium">Ensure that these requirements are met:</span>
+                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                                  @if (registerForm.get('phone')?.getError('required')) {<li>phone is required</li>}
+                                  @if (registerForm.get('phone')?.getError('pattern')) {<li> Please enter a valid 11-digit Egyptian mobile number, starting with 01 (e.g., 01012345678) </li>}
+                                  
+                              </ul>
+                            </div>
+                          </div>
+                    }
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3 top-3.5 text-gray-400"></i>
+                        <input [type]="isHidden() ? 'password' : 'text' " placeholder="Enter your password"
+                        [class]="{
+                          'border-green-500' : registerForm.get('password')?.valid,
+                          'border-red-500' : registerForm.get('password')?.invalid && registerForm.get('password')?.touched
+                        }"
+                        formControlName="password"
+                            class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none">
+                            @if (isHidden() == true) {
+                              <i (click)="isHidden.set( !isHidden() )" class="fa-regular fa-eye text-gray-500 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"></i>
+                              }
+                             @if (!isHidden()) {
+                                <i (click)="isHidden.set( !isHidden() )" class="fa-regular fa-eye-slash text-gray-500 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"></i>
+                             }
+                    </div>
+                    @if (registerForm.get('password')?.errors && registerForm.get('password')?.touched) {
+                        <div class="flex p-4 mb-4 mt-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+                            <svg class="w-4 h-4 me-2 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                            <span class="sr-only">Danger</span>
+                            <div>
+                              <span class="font-medium">Ensure that these requirements are met:</span>
+                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                                  @if (registerForm.get('password')?.getError('required')) {<li>Password is required</li>}
+                                  @if (registerForm.get('password')?.getError('pattern')) {
+                                    <li>An uppercase letter (A-Z)</li>
+                                    <li>A lowercase letter (a-z)</li>
+                                    <li>one number</li>
+                                    <li>At least special one character</li>
+                                    <li>minimum 8 characters</li>
+                                    
+                                  }
+                                  
+                              </ul>
+                            </div>
+                          </div>
+                    }
+                </div>
+
+                <!-- Confirm Password -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Confirm Password
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3 top-3.5 text-gray-400"></i>
+                        <input [type]="isHiddenConfirmPassword() ? 'password' : 'text' " placeholder="Enter your password"
+                        formControlName="rePassword" 
+                        [class]="{
+                          'border-green-500' : registerForm.get('rePassword')?.valid,
+                          'border-red-500' : registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched
+                        }"
+                        class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none">
+                        @if (isHiddenConfirmPassword() == true) {
+                          <i (click)="isHiddenConfirmPassword.set( !isHiddenConfirmPassword() )" class="fa-regular fa-eye text-gray-500 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"></i>
+                          }
+                         @if (!isHiddenConfirmPassword()) {
+                            <i (click)="isHiddenConfirmPassword.set( !isHiddenConfirmPassword() )" class="fa-regular fa-eye-slash text-gray-500 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"></i>
+                         }
+                    </div>
+                    @if (registerForm.getError('mismatch') && registerForm.get('rePassword')?.touched) {
+                        <div class="flex p-4 mb-4 mt-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+                            <svg class="w-4 h-4 me-2 shrink-0" ...></svg>
+                            <div>
+                                <span class="font-medium">Ensure that these requirements are met:</span>
+                                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                                    <li>Passwords do not match. Please make sure they are identical.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                @if (errorMsg()) {
+                  <div class="p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft" role="alert">
+                   {{errorMsg()}}
+                  </div>
+                }
+
+                @if (successMsg()) {
+                  <div class="p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" role="alert">
+                  {{successMsg()}}
+                  </div>
+              }
+
+                <!-- Submit -->
+                <button type="submit"
+                [disabled]="registerForm.invalid"
+                    class="w-full disabled:cursor-not-allowed disabled:bg-green-200 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition cursor-pointer">
+                    Create Account
+                </button>
+
+            </form>
+
+            <!-- Footer -->
+            <div class="text-center mt-6 text-sm text-gray-600">
+                Already have an account?
+                <a routerLink="/login" class="text-green-600 font-medium hover:underline">
+                    Sign In
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+  <!-- Benefits Section  -->
+
+  <section class="bg-[#F0FDF4] py-10">
+    <div class="px-6 container mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Free Shipping -->
+        <div
+          class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition"
+        >
+          <div class="w-12 h-12 rounded-full bg-[#DCFCE7] flex items-center justify-center">
+            <i class="fas fa-truck text-green-600"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-800">Free Shipping</h4>
+            <p class="text-sm text-gray-500">On orders over 500 EGP</p>
+          </div>
+        </div>
+
+        <!-- Secure Payment -->
+        <div
+          class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition"
+        >
+          <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+            <i class="fas fa-shield-alt text-green-600"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-800">Secure Payment</h4>
+            <p class="text-sm text-gray-500">100% secure transactions</p>
+          </div>
+        </div>
+
+        <!-- Easy Returns -->
+        <div
+          class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition"
+        >
+          <div class="w-12 h-12 rounded-full bg-[#DCFCE7] flex items-center justify-center">
+            <i class="fas fa-rotate-left text-green-600"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-800">Easy Returns</h4>
+            <p class="text-sm text-gray-500">14-day return policy</p>
+          </div>
+        </div>
+
+        <!-- 24/7 Support -->
+        <div
+          class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition"
+        >
+          <div class="w-12 h-12 rounded-full bg-[#DCFCE7] flex items-center justify-center">
+            <i class="fas fa-headset text-green-600"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-800">24/7 Support</h4>
+            <p class="text-sm text-gray-500">Dedicated support team</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

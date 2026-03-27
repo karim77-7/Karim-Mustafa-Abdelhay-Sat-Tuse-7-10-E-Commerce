@@ -1,0 +1,70 @@
+<!-- product-card.component.html -->
+<div class="bg-white border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-xl flex flex-col h-[420px]">
+
+  <!-- Image Section -->
+  <div class="relative">
+    <img
+      class="w-full h-60 object-contain bg-white"
+      alt="Product Image"
+      [src]="data().imageCover"
+    />
+
+    <div class="absolute top-3 right-3 flex flex-col space-y-2">
+      <!-- Wishlist -->
+      <button (click)="addProductToWishlist(data()._id)" class="bg-white cursor-pointer h-8 w-8 rounded-full flex items-center justify-center transition shadow-sm text-gray-600 hover:text-red-500">
+        <i class="far fa-heart"></i>
+      </button>
+      <!-- Compare -->
+      <button class="bg-white cursor-pointer h-8 w-8 rounded-full flex items-center justify-center text-gray-600 hover:text-green-600 transition shadow-sm">
+        <i class="fas fa-arrows-rotate"></i>
+      </button>
+      <!-- View -->
+      <a [routerLink]="['/product-details', data()._id]" class="bg-white cursor-pointer h-8 w-8 rounded-full flex items-center justify-center text-gray-600 hover:text-green-600 transition shadow-sm">
+        <i class="far fa-eye"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Content Section — grows to fill remaining height -->
+  <div class="p-4 flex flex-col flex-1">
+
+    <div class="text-xs text-gray-500 mb-1">{{ data().category.name }}</div>
+
+    <!-- Title — fixed 2-line height so all cards align -->
+    <h3 class="font-medium mb-2 cursor-pointer flex-shrink-0">
+      <a class="line-clamp-2 leading-snug block min-h-[2.8rem]">
+        {{ data().title.slice(0, 55) }}{{ data().title.length > 60 ? '...' : '' }}
+      </a>
+    </h3>
+
+    <!-- Rating -->
+    <div class="flex items-center mb-2 flex-shrink-0">
+      <div class="flex text-yellow-400 mr-2">
+        @for (star of getStars(data().ratingsAverage); track $index) {
+          @if (star === 'full') {
+            <i class="fas fa-star text-xs"></i>
+          } @else if (star === 'half') {
+            <i class="fas fa-star-half-alt text-xs"></i>
+          } @else {
+            <i class="far fa-star text-xs"></i>
+          }
+        }
+      </div>
+      <span class="text-xs text-gray-500">
+        {{ data().ratingsAverage }} ({{ data().ratingsQuantity }})
+      </span>
+    </div>
+
+    <!-- Price + Add — pushed to bottom -->
+    <div class="flex items-center justify-between mt-auto pt-2">
+      <span class="text-lg font-bold text-gray-800">
+        {{ data().price | currency: 'EGP' }}
+      </span>
+      <button (click)="addProductToCart(data()._id
+    )" class="h-10 w-10 rounded-full flex items-center justify-center transition bg-green-700 text-white cursor-pointer hover:bg-green-800">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
